@@ -1,0 +1,57 @@
+.auth-page {
+    display: flex;
+    min-width: 100%;
+    min-height: 89vh;
+    justify-content: space-between;
+    position: relative;
+
+    @media (max-width:768px) {
+        min-height: 91vh;
+    }
+
+    @media (max-width:554px) {
+        min-height: 85vh;
+    }
+
+    &-image {
+        width: 70%;
+
+        @media (max-width:1024px) {
+            width: 60%;
+        }
+
+        @media (max-width: 554px) {
+            display: none;
+        }
+
+        &-img {
+            width: 100%;
+            height: 100%;
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+    }
+
+    &-form {
+        padding: 20px;
+        width: 30%;
+
+        @media (max-width:1024px) {
+            width: 40%;
+        }
+
+        @media (max-width:554px) {
+            width: 100%;
+        }
+
+        &-heading {
+            padding: 10px 0 20px 0;
+        }
+    }
+
+    // &-login{
+    //     position: relative;
+    // }
+}
