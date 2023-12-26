@@ -6,6 +6,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "User is required"],
     },
+  
+    
     title: {
       type: String,
       required: [true, "Title is required"],

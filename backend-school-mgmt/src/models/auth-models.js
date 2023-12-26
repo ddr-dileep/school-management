@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
       enum: ["superAdmin", "admin", "staff", "student"],
       required: [true, "Role is required"],
     },
+
     email: {
       type: String,
       unique: [true, "Email is already registered"],
@@ -46,6 +47,8 @@ const userSchema = new mongoose.Schema(
     joiningDate: {
       type: String,
     },
+
+    
   },
   {
     timestamps: true,
