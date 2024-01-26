@@ -1,3 +1,5 @@
+export { WhiteSpace } from "./white-space";
+export { AppSlider } from "./slider";
 export { Loader } from "./loader";
 export { Footer } from "./footer";
 export { Header } from "./header";

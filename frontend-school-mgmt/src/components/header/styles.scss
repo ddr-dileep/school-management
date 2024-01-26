@@ -1,6 +1,20 @@
 .nav-bar {
-    padding: 20px 0 !important;
-    background-color: #a666ff29;
-    box-shadow: 0px 3px 5px rgba(246, 255, 230, 0.685);
+  padding: 20px 0 !important;
+  background-color: #ceeccc45;
+  // box-shadow: 0px 3px 5px rgba(246, 255, 230, 0.685);
 
+  @media (max-width: 992px) {
+    background-color: #ffffff;
+  }
+
+  &-bg-black {
+    background-color: #f7f5d1;
+  }
+
+  .brand-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0px 3px 5px rgba(131, 139, 204, 0.685);
+  }
 }

@@ -1,57 +1,45 @@
 .auth-page {
-    display: flex;
-    min-width: 100%;
-    min-height: 89vh;
-    justify-content: space-between;
-    position: relative;
+  display: flex;
+  min-width: 100%;
+  min-height: 100vh;
+  justify-content: space-between;
+  position: relative;
 
-    @media (max-width:768px) {
-        min-height: 91vh;
+  &-image {
+    width: 70%;
+
+    @media (max-width: 1024px) {
+      width: 60%;
     }
 
-    @media (max-width:554px) {
-        min-height: 85vh;
+    @media (max-width: 554px) {
+      display: none;
     }
 
-    &-image {
-        width: 70%;
+    &-img {
+      width: 100%;
+      height: 100%;
+      background-position: right bottom;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
 
-        @media (max-width:1024px) {
-            width: 60%;
-        }
+  &-form {
+    padding: 20px;
+    padding-top: 150px;
+    width: 30%;
 
-        @media (max-width: 554px) {
-            display: none;
-        }
-
-        &-img {
-            width: 100%;
-            height: 100%;
-            background-position: right bottom;
-            background-repeat: no-repeat;
-            background-size: cover;
-
-        }
+    @media (max-width: 1024px) {
+      width: 40%;
     }
 
-    &-form {
-        padding: 20px;
-        width: 30%;
-
-        @media (max-width:1024px) {
-            width: 40%;
-        }
-
-        @media (max-width:554px) {
-            width: 100%;
-        }
-
-        &-heading {
-            padding: 10px 0 20px 0;
-        }
+    @media (max-width: 554px) {
+      width: 100%;
     }
 
-    // &-login{
-    //     position: relative;
-    // }
+    &-heading {
+      padding: 10px 0 20px 0;
+    }
+  }
 }

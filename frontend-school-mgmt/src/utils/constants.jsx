@@ -52,4 +52,34 @@ export const formConstants = {
       id: "register-privacy-policy",
     },
   ],
+  contactUsFields: [
+    {
+      name: "name",
+      type: "text",
+      placeholder: "Full name",
+      isRequired: true,
+      id: "contact-page-fullname",
+    },
+    {
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      isRequired: true,
+      id: "contact-page-email",
+    },
+    {
+      name: "phone",
+      type: "tel",
+      placeholder: "Phone number",
+      isRequired: true,
+      id: "contact-page-password",
+    },
+    {
+      name: "message",
+      type: "textarea",
+      placeholder: "Message...",
+      isRequired: true,
+      id: "contact-page-message",
+    },
+  ],
 };

@@ -5,7 +5,7 @@ import {AppButton, AppImage, Container} from '../components';
 
 export const HomeScreen = ({navigation}: any) => {
   const buttonPress = () => {
-    navigation.navigate('Profile', {name: 'login'});
+    navigation.navigate('Signup', {name: 'login'});
   };
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -33,7 +33,7 @@ export const HomeScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FF5733',
+    backgroundColor: 'aliceblue',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageStyle: {
-    width: 250,
-    height: 300,
+    width: 200,
+    height: 250,
     marginTop: 20,
   },
   text: {
-    color: 'white',
+    color: '#FF5733',
     fontSize: 18,
     marginVertical: 30,
   },
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
+    padding: 10,
     bottom: 0,
   },
 });

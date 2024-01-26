@@ -1,0 +1,11 @@
+.home{
+    min-height: 100vh;
+    &-top-image{
+        min-height: 700px;
+        background-image: url('./../../assets/image/background-school.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+
+    }
+}

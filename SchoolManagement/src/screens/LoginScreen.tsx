@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {AppButton} from '../components';
+import {AppButton, AppForm, Heading} from '../components';
+import { StyleSheet, View } from 'react-native';
 
 export const LoginScreen = ({navigation}: any) => {
   const buttonPress = () => {
@@ -8,7 +9,18 @@ export const LoginScreen = ({navigation}: any) => {
   };
   return (
     <SafeAreaView>
-      <AppButton onPress={buttonPress}>Go to Jane's profile</AppButton>
+      <View style={styles.container}>
+        <Heading title="Login" />
+        <AppForm />
+      </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'aliceblue',
+    paddingVertical: 20,
+    paddingHorizontal: 7,
+  },
+});

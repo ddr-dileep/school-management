@@ -30,11 +30,12 @@ export const LoginPage = () => {
       <AuthPage>
         <AppHeading title="Welcome back" className="auth-page-form-heading" />
         <AppForm
+          className="auth-page-form"
           inputFields={formConstants.loginFields}
           onInputChange={onInputChange}
         />
         <AppButton
-          className="my-2 d-block"
+          className="my-3 d-block"
           buttonText="Login"
           onClick={onLoginFormSubmit}
           isDisabled={isLoading}
@@ -44,7 +45,7 @@ export const LoginPage = () => {
         <Link to="/forgot-password">Forgot password</Link>
         <Divider className="my-3" />
         <span>
-          Do not have any account? <Link to="/register">Register</Link>{" "}
+          Don't have any account? <Link to="/contact">Contact Admin</Link>
         </span>
       </AuthPage>
     </>

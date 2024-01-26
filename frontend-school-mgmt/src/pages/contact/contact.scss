@@ -1,0 +1,28 @@
+.contact {
+    background-color: aliceblue;
+    min-height: 100vh;
+
+    &-top-image {
+        min-height: 700px;
+        background-image: url("./../../assets/image/top-page-bg.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left;
+        position: relative;
+        padding: 50px 10px;
+    }
+
+    &-form {
+        width: 50%;
+        padding: 60px 0;
+        margin: 0 auto;
+
+        &-white-space{
+            height: 42px;
+        }
+
+        &-button{
+            margin: 15px 0 !important;
+        }
+    }
+}

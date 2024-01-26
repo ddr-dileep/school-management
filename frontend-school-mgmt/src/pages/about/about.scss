@@ -1,0 +1,12 @@
+.about{
+    min-height: 100vh;
+    
+    &-top-image{
+        background-image: url('./../../assets/image/top-page-bg.jpeg');
+        height: 700px;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left;
+    }
+}
