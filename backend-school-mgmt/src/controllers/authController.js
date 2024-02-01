@@ -21,17 +21,17 @@ export const authController = {
   login: async (req, res) => {
     try {
       const { email, uniqueId, password } = req.body;
-      const identifier = email || uniqueId
+      const identifier = email || uniqueId;
       let user;
 
-    if (emailRegex.test(identifier)) {
-      user = await User.findOne({ email: identifier });
-    } else {
-      user = await User.findOne({ uniqueId: identifier });
-    }
+      if (emailRegex.test(identifier)) {
+        user = await User.findOne({ email: identifier });
+      } else {
+        user = await User.findOne({ uniqueId: identifier });
+      }
       if (!user) {
         return apiResponse.error(res, {
-          errorMessage: "user not found with the given email",
+          errorMessage: "user not found",
         });
       }
 
@@ -39,14 +39,13 @@ export const authController = {
 
       if (!passwordMatch) {
         return apiResponse.error(res, {
-          errorMessage: "Invalid email or password",
+          errorMessage: "Invalid  credientials",
         });
       }
       const token = generateToken({ userId: user?._id });
 
       return apiResponse.success(res, { success: true, token });
     } catch (error) {
-      console.log(error);
       return apiResponse.server(res);
     }
   },

@@ -51,7 +51,7 @@ export const registerMiddleware = (req, res, next) => {
 export const loginMiddleware = (req, res, next) => {
   const { password, email, uniqueId } = req.body;
   if (!uniqueId && !email)
-    return apiResponse.error(res, { errorMessage: "Unique id is required" });
+    return apiResponse.error(res, { errorMessage: "Username is required" });
   else if (!password)
     return apiResponse.error(res, { errorMessage: "Password is required" });
   return next();
