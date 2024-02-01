@@ -31,8 +31,9 @@ export const HomePage = () => {
 
   return (
     <div className="home">
-      <div className="home-top-image"></div>
-      <AppSlider />
+      <div className="home-top-image">
+        <AppSlider />
+      </div>
     </div>
   );
 };
