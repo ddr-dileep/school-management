@@ -1,16 +1,99 @@
 import { generateToken } from "../middlewares/authMiddleware.js";
-import User from "../models/auth-models.js";
+import User from "../models/auth/admin-auth.model.js";
+import Owner from "../models/auth/owner-auth.model.js";
 import { apiResponse, comparePassword, hashPassword } from "../utils/index.js";
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export const authController = {
-  register: async (req, res) => {
+  registerOwner: async (req, res) => {
     try {
       const reqBody = {
         ...req.body,
         password: await hashPassword(req.body?.password),
       };
-      const newUser = new User(reqBody);
+      const newUser = new Owner(reqBody);
+      await newUser.save();
+      return apiResponse.success(res, { success: true, user: newUser });
+    } catch (error) {
+      return apiResponse.validationErrors(res, error);
+    }
+  },
+
+  loginOwner: async (req, res) => {
+    try {
+      const { email, phone, password } = req.body;
+      let user;
+      if (email) {
+        user = await Owner.findOne({ email });
+      } else {
+        user = await Owner.findOne({ phone });
+      }
+      if (!user) {
+        return apiResponse.error(res, {
+          errorMessage: "user not found",
+        });
+      }
+
+      const passwordMatch = await comparePassword(password, user.password);
+
+      if (!passwordMatch) {
+        return apiResponse.error(res, {
+          errorMessage: "Invalid  credientials",
+        });
+      }
+      const token = generateToken({ userId: user?._id });
+
+      return apiResponse.success(res, { success: true, token });
+    } catch (error) {
+      return apiResponse.server(res);
+    }
+  },
+
+  getOwnerInfo: async (req, res) => {
+    try {
+      const user = await Owner.findById(req?.userInfo?.userId);
+      if (!user)
+        return apiResponse.error(res, {
+          errorMessage: "Account not found or deleted",
+        });
+      return apiResponse.success(res, { user });
+    } catch (error) {
+      return apiResponse.server(res);
+    }
+  },
+
+  updateOwnerInfo: async (req, res) => {
+    try {
+      const updatedUser = await Owner.findByIdAndUpdate(
+        { _id: req?.userInfo?.userId },
+        { $set: { ...req.body } },
+        { new: true, runValidators: true }
+      );
+
+      console.log("updatedUser", updatedUser);
+
+      if (!updatedUser) {
+        return apiResponse.error(res, {
+          errorMessage: "User unable to update",
+        });
+      }
+
+      return apiResponse.success(res, {
+        message: "User updated successfully",
+        user: updatedUser,
+      });
+    } catch (error) {
+      return apiResponse.validationErrors(res, error);
+    }
+  },
+
+  registerAdmin: async (req, res) => {
+    try {
+      const reqBody = {
+        ...req.body,
+        password: await hashPassword(req.body?.password),
+      };
+      const newUser = new Owner(reqBody);
       await newUser.save();
       return apiResponse.success(res, { success: true, user: newUser });
     } catch (error) {
@@ -97,14 +180,6 @@ export const authController = {
       });
     } catch (error) {
       return apiResponse.error(res, { errorMessage: error?.message });
-    }
-  },
-
-  logout: async (req, res) => {
-    try {
-      return apiResponse.success(res, { message: "Logout successful" });
-    } catch (error) {
-      return apiResponse.server(res);
     }
   },
 };

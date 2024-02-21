@@ -1,27 +1,36 @@
 import express from "express";
 import { authController } from "./../controllers/index.js";
 import {
-  loginMiddleware,
-  registerMiddleware,
+  loginOwnerMiddleware,
+  registerOwnerMiddleware,
   verifyUserMiddleware,
 } from "../middlewares/authMiddleware.js";
 
 const authRouters = express.Router();
 
-authRouters.post("/register", registerMiddleware, authController.register);
-
-authRouters.post("/login", loginMiddleware, authController.login);
-
-authRouters.get(
-  "/get-details",
-  verifyUserMiddleware,
-  authController.getUserInfo
+authRouters.post(
+  "/register-owner",
+  registerOwnerMiddleware,
+  authController.registerOwner
 );
 
-authRouters.put("/update", verifyUserMiddleware, authController.update);
+authRouters.post(
+  "/login-owner",
+  loginOwnerMiddleware,
+  authController.loginOwner
+);
 
-authRouters.delete("/delete", verifyUserMiddleware, authController.delete);
+authRouters.get(
+  "/get-owner-info",
+  verifyUserMiddleware,
+  authController.getOwnerInfo
+);
 
-authRouters.post("/logout", verifyUserMiddleware, authController.logout);
+authRouters.put(
+  "/update-owner-info",
+  registerOwnerMiddleware,
+  verifyUserMiddleware,
+  authController.updateOwnerInfo
+);
 
 export default authRouters;

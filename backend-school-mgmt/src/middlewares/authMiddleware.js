@@ -1,6 +1,6 @@
 import JWT from "jsonwebtoken";
 import { apiResponse } from "../utils/index.js";
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+import mongoose from "mongoose";
 
 export const verifyUserMiddleware = (req, res, next) => {
   try {
@@ -26,33 +26,31 @@ export function generateToken(payload) {
   });
 }
 
-export const registerMiddleware = (req, res, next) => {
-  const { role, password, email, uniqueId } = req.body;
-  if (!role)
-    return apiResponse.error(res, { errorMessage: "Role is required" });
+export const registerOwnerMiddleware = (req, res, next) => {
+  const { name, phone, password, email } = req.body;
+  if (!name)
+    return apiResponse.error(res, { errorMessage: "Name is required" });
+  else if (!phone)
+    return apiResponse.error(res, { errorMessage: "Phone is required" });
+  else if (!email)
+    return apiResponse.error(res, { errorMessage: "Email is required" });
   else if (!password)
     return apiResponse.error(res, { errorMessage: "Password is required" });
-  if (role == "admin" || "superAdmin") {
-    if (!email) {
-      return apiResponse.error(res, { errorMessage: "Email is required" });
-    } else if (!emailRegex.test(email)) {
-      return apiResponse.error(res, {
-        errorMessage: "Enter valid email address",
-      });
-    }
-  } else if (role !== "admin" || "superAdmin") {
-    if (!uniqueId)
-      return apiResponse.error(res, { errorMessage: "Unique ID is required" });
-  }
-
   return next();
 };
 
-export const loginMiddleware = (req, res, next) => {
-  const { password, email, uniqueId } = req.body;
-  if (!uniqueId && !email)
-    return apiResponse.error(res, { errorMessage: "Username is required" });
+export const loginOwnerMiddleware = (req, res, next) => {
+  const { phone, email, password } = req.body;
+  if (!phone && !email)
+    return apiResponse.error(res, {
+      errorMessage: "email or phone is required",
+    });
   else if (!password)
     return apiResponse.error(res, { errorMessage: "Password is required" });
   return next();
+};
+
+export const validObjectId = (id) => {
+  const isValidObjectId = mongoose.Types.ObjectId.isValid(id);
+  return isValidObjectId;
 };
